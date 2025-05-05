@@ -1,0 +1,61 @@
+1. Leap Year
+#!/bin/bash
+echo "Enter a year to check:"
+read year
+if (( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) )); then
+echo "$year is a leap year"
+else
+echo "$year is not a leap year"
+fi
+2. Fibonacci series
+#!/bin/bash
+echo "Enter the upper limit for the Fibonacci series:"
+read limit
+a=0
+b=1
+echo "Fibonacci series up to $limit:"
+echo -n "$a $b "
+while (( b < limit )); do
+next=$((a + b))
+echo -n "$next "
+a=$b
+b=$next
+done
+echo
+
+3. Armstrong Number
+#!/bin/bash
+echo "Enter a number to check for Armstrong number:"
+read num
+original_num="$num"
+sum=0
+digit
+num_digits=$(echo "$num" | wc -c)
+num_digits=$((num_digits - 1)) # Adjust for newline character
+
+while (( num > 0 )); do
+digit=$((num % 10))
+sum=$((sum + digit**num_digits))
+num=$((num / 10))
+done
+if (( sum == original_num )); then
+echo "$original_num is an Armstrong number"
+else
+echo "$original_num is not an Armstrong number"
+fi
+
+4. Prime Number
+#!/bin/bash
+echo "Enter a number to check for prime:"
+read num
+if (( num <= 1 )); then
+echo "$num is not a prime number"
+exit 0
+fi
+for ((i=2; i*i<=num; i++)); do
+if (( num % i == 0 )); then
+echo "$num is not a prime number"
+exit 0
+fi
+done
+echo "$num is a prime number”
